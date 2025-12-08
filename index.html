@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Playing Cards Distribution</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        input {
+            padding: 6px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        pre {
+            background: #f1f1f1;
+            padding: 12px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Playing Cards Distribution</h1>
+
+<p>Enter number of people:</p>
+
+<input type="number" id="people" placeholder="ex. 4" required>
+<button id="submit">Submit</button>
+
+<p id="error" class="error"></p>
+
+<h2>Result</h2>
+<pre id="result"></pre>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(function() {
+    $("#submit").click(function() {
+        $("#error").text("");
+        $("#result").text("");
+
+        let value = $("#people").val().trim();
+        //console.log("No of people:", value);
+
+        if (value === "") {
+            $("#error").text("Input value does not exist or value is invalid");
+            return;
+        }
+
+        $.get("index.php", { people: value })
+            .done(function(response) {
+                $("#result").text(response);
+            })
+            .fail(function() {
+                //console.log("Error");
+                $("#error").text("Irregularity occurred");
+            });
+    });
+});
+</script>
+
+</body>
+</html>
