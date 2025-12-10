@@ -154,7 +154,7 @@ All code (`index.php` and `index.html`) was written manually by me.
 ---
 
 # ⏱ Time Spent
-**2 hours**
+**2.5 hours**
 
 ---
 
